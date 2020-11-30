@@ -21,7 +21,9 @@ use Illuminate\Http\Request;
 
 //顯示所有任務的清單
 Route::get('/', function () {
-    return view('tasks');
+    return view('tasks', [
+        'tasks' => Task::orderBy('created_at', 'asc')->get()
+    ]);
 });
 // 增加新的任務
 Route::post('/task', function (Request $request) {
